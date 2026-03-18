@@ -1,12 +1,14 @@
-# 要記得 2.0 OSS
+# 海豹助理 SealBot
 
-`要記得 2.0 OSS` 是一個可自架的 LINE 提醒機器人。
+`海豹助理（SealBot）` 是一個可自架的 LINE 提醒機器人。
 
 這個開源版的定位很單純：
 - 使用 `Google Apps Script`
 - 使用 `Google Sheets` 當資料庫
 - 讓使用者自己綁定 `LINE Messaging API`
 - 自己部署自己的提醒機器人
+
+目前公開 repository 對外名稱為 `SealBot`，中文名稱為 `海豹助理`。
 
 ## 功能範圍
 
@@ -104,7 +106,7 @@ getOpenSourcePublishChecklist()
 
 ## AI 安裝說明
 
-如果你想把這個專案交給對話型 AI 協助部署，可參考：
+如果你想把 `海豹助理 SealBot` 交給對話型 AI 協助部署，可參考：
 
 - [AI-README.md](/Users/angus/OpenCode/要記得2.0/AI-README.md)
 

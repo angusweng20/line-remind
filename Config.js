@@ -28,7 +28,7 @@ const CONFIG = {
   get CHANNEL_ACCESS_TOKEN() { return getScriptProperty('CHANNEL_ACCESS_TOKEN', DEFAULT_CHANNEL_ACCESS_TOKEN); },
   get SHEET_ID() { return getScriptProperty('SHEET_ID', DEFAULT_SHEET_ID); },
   get OPENAI_API_KEY() { return getScriptProperty('OPENAI_API_KEY', DEFAULT_OPENAI_API_KEY); },
-  BOT_NAME: '記得',
+  BOT_NAME: '海豹助理 SealBot',
   BOT_TONE: 'SERIOUS'
 };
 

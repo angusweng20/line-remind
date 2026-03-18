@@ -2,6 +2,10 @@
 
 這份文件是寫給 AI agent 看，不是寫給一般終端使用者看。
 
+專案名稱：
+- 中文：`海豹助理`
+- 英文：`SealBot`
+
 適用對象包括：
 - OpenCode
 - Codex
@@ -11,7 +15,7 @@
 
 ## 專案定位
 
-這是一個「純開源、自架、Google Sheets 當資料庫」的 LINE 提醒機器人。
+這是一個名為 `海豹助理（SealBot）` 的「純開源、自架、Google Sheets 當資料庫」LINE 提醒機器人。
 
 請不要把它描述成：
 - SaaS
