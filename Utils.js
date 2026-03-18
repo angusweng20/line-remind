@@ -289,25 +289,11 @@ function extractContent(text) {
 // ==========================================
 
 function createHelpFlex() {
-  const capabilities = getAvailableCapabilities();
   const buttons = [
-    createButton("🔔 新增提醒 (要記得)", "要記得")
+    createButton("🔔 新增提醒 (要記得)", "要記得"),
+    createButton("👀 查詢/取消", "查詢"),
+    createButton("❓ 說明", "help")
   ];
-
-  if (capabilities.ideaCapture) {
-    buttons.push(createButton("📝 記錄想法 (要記錄)", "要記錄"));
-  }
-
-  if (capabilities.exportRecords) {
-    buttons.push(createButton("📦 匯出記錄", "匯出記錄 markdown"));
-  }
-
-  if (capabilities.feedback) {
-    buttons.push(createButton("💬 提供反饋 (要反饋)", "要反饋"));
-  }
-
-  buttons.push(createButton("👀 查詢/取消", "查詢"));
-  buttons.push(createButton("❓ 說明", "help"));
 
   return {
     "type": "bubble",
@@ -452,22 +438,6 @@ function createReminderListFlex(reminders) {
 
 function createConfirmFlex(details) {
     const catInfo = getCategoryInfo(details.category || 'other');
-    const extraDetails = [];
-    if (details.maxRuns && details.maxRuns > 0 && details.freq !== '單次') {
-      extraDetails.push({
-        "type": "text",
-        "text": `🔢 單一事件提醒上限：${details.maxRuns} 次`,
-        "size": "sm"
-      });
-    }
-    if (details.planCode) {
-      extraDetails.push({
-        "type": "text",
-        "text": `🪪 方案：${details.planCode}`,
-        "size": "sm"
-      });
-    }
-
     return {
       "type": "bubble",
       "body": {
@@ -482,7 +452,7 @@ function createConfirmFlex(details) {
               { "type": "text", "text": `${catInfo.icon} 分類：${details.category}`, "size": "sm", "color": catInfo.color },
               { "type": "text", "text": `👤 對象：${details.targetName}`, "size": "sm" },
               { "type": "text", "text": `📝 內容：${details.content}`, "size": "sm", "wrap": true }
-            ].concat(extraDetails)
+            ]
           }
         ]
       }

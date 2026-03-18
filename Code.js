@@ -3,23 +3,8 @@
  */
 
 function setup() {
-  if (CONFIG.DATABASE_PROVIDER === 'SUPABASE') {
-    if (!CONFIG.SUPABASE_URL || !CONFIG.SUPABASE_SERVICE_ROLE_KEY) {
-      Logger.log('尚未設定 Supabase 連線資訊，請先在 Script Properties 設定 SUPABASE_URL 與 SUPABASE_SERVICE_ROLE_KEY。');
-      return;
-    }
-
-    const test = Database.init();
-    if (!test) {
-      Logger.log('Supabase 初始化失敗');
-      return;
-    }
-    
-    Logger.log('Supabase 連線成功！初始化完成');
-  } else {
-    Database.init();
-    Logger.log('Google Sheets 資料庫初始化完成');
-  }
+  Database.init();
+  Logger.log('Google Sheets 資料庫初始化完成');
   
   // Auto-setup Trigger
   setupTrigger();
@@ -80,24 +65,16 @@ function doGet(e) {
 }
 
 function getPublicStatusText() {
-  const provider = CONFIG.DATABASE_PROVIDER;
-  if (provider === 'SHEETS') {
-    const spreadsheet = CONFIG.SHEET_ID
-      ? SpreadsheetApp.openById(CONFIG.SHEET_ID)
-      : SpreadsheetApp.getActiveSpreadsheet();
-    const reminderSheet = spreadsheet.getSheetByName('提醒事項');
-
-    return [
-      'Connection Success! The bot is accessible.',
-      `Provider: ${provider}`,
-      `Spreadsheet: ${spreadsheet.getId()}`,
-      `Reminder Sheet: ${reminderSheet ? 'OK' : 'MISSING'}`
-    ].join('\n');
-  }
+  const spreadsheet = CONFIG.SHEET_ID
+    ? SpreadsheetApp.openById(CONFIG.SHEET_ID)
+    : SpreadsheetApp.getActiveSpreadsheet();
+  const reminderSheet = spreadsheet.getSheetByName('提醒事項');
 
   return [
     'Connection Success! The bot is accessible.',
-    `Provider: ${provider}`
+    'Provider: SHEETS',
+    `Spreadsheet: ${spreadsheet.getId()}`,
+    `Reminder Sheet: ${reminderSheet ? 'OK' : 'MISSING'}`
   ].join('\n');
 }
 
@@ -134,13 +111,6 @@ function checkReminders() {
           altText: `🔔 提醒：${content}`, 
           contents: flex 
       }]);
-
-      if (freqCode !== 'ONCE' && reachedRunLimit) {
-        pushMessage(targetId, [{
-          type: 'text',
-          text: `提醒「${content}」已達目前方案的單一事件提醒上限，已自動停止。之後若要繼續，可以重新建立這則提醒。`
-        }]);
-      }
     }
     
     let nextDate = new Date(scheduledTime);

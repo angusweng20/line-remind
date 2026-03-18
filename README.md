@@ -8,8 +8,6 @@
 - 讓使用者自己綁定 `LINE Messaging API`
 - 自己部署自己的提醒機器人
 
-如果你想直接使用、不要自己部署，這個專案的方向也保留了代管版路線；但這個 repository 本身聚焦在自架開源版。
-
 ## 功能範圍
 
 目前開源版主打：
@@ -18,12 +16,6 @@
 - `完成`
 - `延後`
 - `取消`
-
-目前不包含代管版功能：
-- `要記錄`
-- `要反饋`
-- `匯出記錄`
-- 代管方案與後台營運能力
 
 ## 技術組成
 
@@ -35,7 +27,7 @@
 - [Code.js](/Users/angus/OpenCode/要記得2.0/Code.js)
 - [Handlers.js](/Users/angus/OpenCode/要記得2.0/Handlers.js)
 - [Utils.js](/Users/angus/OpenCode/要記得2.0/Utils.js)
-- [DatabaseProvider.js](/Users/angus/OpenCode/要記得2.0/DatabaseProvider.js)
+- [Database.js](/Users/angus/OpenCode/要記得2.0/Database.js)
 
 ## 快速開始
 
@@ -57,7 +49,6 @@ cp .clasp.json.example .clasp.json
 
 至少需要設定：
 
-- `DATABASE_PROVIDER=SHEETS`
 - `CHANNEL_ACCESS_TOKEN=<your line channel access token>`
 - `SHEET_ID=<your spreadsheet id>`
 
@@ -116,9 +107,9 @@ getOpenSourcePublishChecklist()
 - `Code.js`: 入口、Webhook、Trigger
 - `Handlers.js`: 指令處理與主流程
 - `Utils.js`: 訊息、解析、Flex builders
-- `DatabaseProvider.js`: `SUPABASE / SHEETS` provider 切換
-- `Admin.js`: 初始化、自檢、營運 helper
-- `Config.js`: 設定與 capability 控制
+- `Database.js`: Google Sheets 資料存取
+- `Admin.js`: 初始化與自檢 helper
+- `Config.js`: 基本設定
 
 ## .clasp.json 的開源處理
 
